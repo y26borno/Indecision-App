@@ -2,45 +2,116 @@
 
 var app = {
 
-  title: "Yousuf & Sumaya",
-  subtitle: "Love at first sight",
-  option: ['One', 'Two']
+  title: "Indecision App",
+  subtitle: "Manage your time ",
+  options: ['One', 'Two']
 
 };
 
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    "p",
-    null,
-    "app.subtitle"
-  ),
-  app.option.length > 0 ? React.createElement(
-    "p",
-    null,
-    "Here is the option "
-  ) : "No options",
-  React.createElement(
-    "ol",
+var onFormSubmit = function onFormSubmit(event) {
+
+  event.preventDefault();
+
+  console.log("Form submitted");
+
+  var option = event.target.elements.option.value;
+
+  if (option) {
+
+    app.options.push(option);
+    event.target.elements.option.value = '';
+  }
+
+  renderingR();
+};
+
+var removeAll = function removeAll() {
+
+  console.log("button pressed");
+  app.options.length = 0;
+
+  renderingR();
+};
+
+/*
+var template = (
+
+   <div>
+     <h1>{app.title}</h1>
+    <p>{ app.subtitle && app.subtitle }</p>
+    { app.options.length > 0 ? <p>Here is the option </p>:"No options"}
+    { app.options.length}
+     <ol>
+     <li>this is one </li>
+     <li>this is two </li>
+     </ol>
+
+      <form onSubmit={onFormSubmit}>
+      <input type="text" name="option"/>
+      <button> Add Option</button>
+      </form>
+
+
+     </div>
+
+
+);
+*/
+
+var renderingR = function renderingR() {
+
+  var template = React.createElement(
+    "div",
     null,
     React.createElement(
-      "li",
+      "h1",
       null,
-      "this is one "
+      app.title
     ),
     React.createElement(
-      "li",
+      "p",
       null,
-      "this is two "
+      app.subtitle && app.subtitle
+    ),
+    app.options.length,
+    React.createElement("br", null),
+    React.createElement(
+      "button",
+      { onClick: removeAll },
+      "Remove All"
+    ),
+    React.createElement(
+      "ol",
+      null,
+      React.createElement(
+        "li",
+        null,
+        "this is one "
+      ),
+      React.createElement(
+        "li",
+        null,
+        "this is two "
+      )
+    ),
+    React.createElement(
+      "form",
+      { onSubmit: onFormSubmit },
+      React.createElement("input", { type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        " Add Option"
+      )
     )
-  )
-);
+  );
+
+  ReactDOM.render(template, appRoot);
+};
+
+var appRoot = document.getElementById("app");
+
+renderingR();
 
 var count = 0;
 
@@ -67,7 +138,8 @@ var reset = function reset() {
   renderCounterApp();
 };
 
-var appRoot = document.getElementById("app");
+//var appRoot = document.getElementById("app");
+
 
 var renderCounterApp = function renderCounterApp() {
 
@@ -83,7 +155,7 @@ var renderCounterApp = function renderCounterApp() {
     React.createElement(
       "button",
       { id: "my-id", onClick: addOne },
-      count
+      "+1"
     ),
     React.createElement(
       "button",
@@ -97,9 +169,9 @@ var renderCounterApp = function renderCounterApp() {
     )
   );
 
-  ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+//renderCounterApp();
 //ReactDOM.render(templateTwo,appRoot);
 //ReactDOM.render(template,appRoot);
