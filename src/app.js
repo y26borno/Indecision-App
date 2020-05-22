@@ -3,7 +3,7 @@ const app = {
 
     title:"Indecision App",
     subtitle:"Manage your time ",
-    options:['One','Two']
+    options:['One']
 
 }
 
@@ -20,7 +20,7 @@ const onFormSubmit= (event) =>{
     app.options.push(option);
     event.target.elements.option.value = '';
  }
-
+ 
  renderingR();
 }
 
@@ -64,7 +64,7 @@ var template = (
 
 const renderingR = () =>{
 
-    var template = (
+    const template = (
 
         <div>
           <h1>{app.title}</h1>
@@ -72,9 +72,17 @@ const renderingR = () =>{
          
          { app.options.length}<br/>
          <button onClick={removeAll}>Remove All</button>
+
           <ol>
-          <li>this is one </li>
-          <li>this is two </li>
+          { app.options.map( (option)=>{
+
+                     
+            return <li key={option}>{option}</li>;
+             
+        })
+      
+      
+      }
           </ol>
      
            <form onSubmit={onFormSubmit}>
@@ -102,7 +110,7 @@ renderingR();
 
 
 
-
+/*
 
 
 
@@ -164,3 +172,5 @@ const renderCounterApp= () =>{
 //renderCounterApp();
 //ReactDOM.render(templateTwo,appRoot);
 //ReactDOM.render(template,appRoot);
+
+*/

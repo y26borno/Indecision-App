@@ -4,7 +4,7 @@ var app = {
 
   title: "Indecision App",
   subtitle: "Manage your time ",
-  options: ['One', 'Two']
+  options: ['One']
 
 };
 
@@ -83,16 +83,14 @@ var renderingR = function renderingR() {
     React.createElement(
       "ol",
       null,
-      React.createElement(
-        "li",
-        null,
-        "this is one "
-      ),
-      React.createElement(
-        "li",
-        null,
-        "this is two "
-      )
+      app.options.map(function (option) {
+
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       "form",
@@ -113,65 +111,67 @@ var appRoot = document.getElementById("app");
 
 renderingR();
 
-var count = 0;
+/*
 
-var addOne = function addOne(event) {
+
+
+let count =0;
+
+const addOne = (event) =>{
 
   //console.log("clicks");
   count++;
-
+   
   console.log(count);
   renderCounterApp();
-};
+}
 
-var minusOne = function minusOne() {
 
-  count--;
-  console.log("MinusOne");
-  renderCounterApp();
-};
+const minusOne = () =>{
+  
+    count--;
+     console.log("MinusOne");
+     renderCounterApp();
 
-var reset = function reset() {
+}
 
-  console.log("Reset");
-  count = 0;
-  renderCounterApp();
-};
+
+const reset = () =>{
+
+    console.log("Reset");
+   count=0;
+   renderCounterApp();
+}
+
+
+
+
 
 //var appRoot = document.getElementById("app");
 
 
-var renderCounterApp = function renderCounterApp() {
+const renderCounterApp= () =>{
 
-  var templateTwo = React.createElement(
-    "div",
-    null,
-    React.createElement(
-      "h1",
-      null,
-      "Count: ",
-      count
-    ),
-    React.createElement(
-      "button",
-      { id: "my-id", onClick: addOne },
-      "+1"
-    ),
-    React.createElement(
-      "button",
-      { id: "my-id1", onClick: minusOne },
-      "-1"
-    ),
-    React.createElement(
-      "button",
-      { id: "my-id2", onClick: reset },
-      "Reset"
-    )
-  );
+    const templateTwo =(
 
-  ReactDOM.render(template, appRoot);
-};
+        <div>
+        
+         <h1>Count: {count}</h1>
+         <button id="my-id" onClick={addOne}>+1</button>
+         <button id="my-id1" onClick={minusOne}>-1</button>
+         <button id="my-id2" onClick={reset}>Reset</button>
+        
+        </div>
+      
+      
+      
+      );
+
+      ReactDOM.render(template,appRoot);
+}
 
 //renderCounterApp();
 //ReactDOM.render(templateTwo,appRoot);
 //ReactDOM.render(template,appRoot);
+
+*/
