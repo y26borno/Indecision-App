@@ -1,0 +1,26 @@
+{
+  "name": "Indecision-App",
+  "version": "1.0.0",
+  "description": "An indecision App is a to-do list which helps to prioritize our daily Tasks. This app is built on the React.js library.",
+  "main": "index.js",
+  "dependencies": {
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-react": "^6.24.1",
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y26borno/Indecision-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/y26borno/Indecision-App/issues"
+  },
+  "homepage": "https://github.com/y26borno/Indecision-App#readme"
+}
