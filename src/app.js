@@ -1,20 +1,57 @@
 
 
 class IndecisionApp extends React.Component{
+constructor(props){
 
+  super(props);
+
+ this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
+ this.handlePick = this.handlePick.bind(this)
+  this.state={
+
+   options:['Thing one','Thing two',"sumaya","Rachel"]
+
+  };
+
+}
+
+//handleDeleteOptions
+
+handleDeleteOptions(){
+
+  this.setState(()=>{
+
+   return{
+      options:[]
+
+   }
+  });
+
+
+}
+
+handlePick(){
+
+   const randomNum = Math.floor(Math.random() * this.state.options.length);
+   const option = this.state.options[randomNum];
+
+   alert(option)
+
+  
+}
 
 render(){
 
  const title = "Indecision"
  const subtitle = "!!put your in the hands of computer"
- const options = ['Thing one','Thing two',"sumaya","Rachel"]
+ 
     return (
 
         <div>
         
         <Header title={title} subtitle={subtitle}/>
-        <Action/>
-        <Options options={options}/>
+        <Action hasOptions={this.state.options.length >0}  handlePick={this.handlePick}/>
+        <Options options={this.state.options}   handleDeleteOptions={this.handleDeleteOptions}/>
         <AddOption/>
         
         </div>
@@ -52,13 +89,7 @@ class Header extends React.Component{
 
 class Action extends React.Component{
 
-     handlePick(){
-
-
-        alert("works!!");
-     }
-
-
+     
 render(){
 
 
@@ -66,7 +97,7 @@ render(){
 
           <div>
           
-          <button onClick={this.handlePick}>What should I do?</button>
+          <button onClick={this.props.handlePick} disabled= {!(this.props.hasOptions)}>What should I do?</button>
           
           </div>
 
@@ -78,11 +109,7 @@ render(){
 
 class Options extends React.Component{
 
- handleRemoveAll(){
-
-
-      alert("Remove All");
- }   
+   
 
 render(){
 
@@ -96,7 +123,7 @@ render(){
 
         
         <div>
-        <button onClick={this.handleRemoveAll}>Remove All Button</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove All Button</button>
         {list.map( (e,key)=> <Option option={e} key={key}/>)}
         </div>
     )
@@ -127,7 +154,7 @@ class AddOption extends React.Component{
 
   handleAddOption(e){
 
-    const eva = e.target.elements.add.value;
+    const eva = e.target.elements.add.value.trim();
 
     if(eva){
 
