@@ -4,8 +4,8 @@ const Option= (props) => {
     
       
     
-    return (<div>
-    {props.option}
+    return (<div className="option">
+    <p className="option__text">{props.count}. {props.option}</p>
     <button onClick={
        
       (e)=>{
